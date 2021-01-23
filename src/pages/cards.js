@@ -70,6 +70,7 @@ const Cards = () => {
       <SEO title="Artists" />
       <Wrapper artistsColor={COLORS.BLACK} descriptionColor={COLORS.SECONDARY}>
         <div className="banner">
+            
           <Image
             fluid={cardsBannerImage.imageFile.childImageSharp.fluid}
             alt={cardsBannerImage.altText}
@@ -85,10 +86,13 @@ const Cards = () => {
           <h2>Our Cards</h2>
           <div className="artist-items">
               
-            {cards.map(( {node:{cardMeta}}) => (
-                
-               <Artist to={`/${cardMeta.cardName}`} key={cardMeta.cardName}>
+            {cards.map(( {node:{cardMeta}}) => {
+               if(cardMeta.cardImage.imageFile != null){
+               return(
+                   <Artist to={`/${cardMeta.cardName.toLowerCase()}`} key={cardMeta.cardName}>
                   
+                      
+                 
                 <Image
                   fluid={cardMeta.cardImage.imageFile.childImageSharp.fluid}
                   alt={cardMeta.cardImage.altText}
@@ -99,8 +103,9 @@ const Cards = () => {
                   </p>
                  
                 </div>
-              </Artist>
-            ))}
+              </Artist>)}
+               
+            })}
           </div>
         </div>
       </Wrapper>

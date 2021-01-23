@@ -74,16 +74,16 @@ const IndexPage = () => {
       </div>
       <div className="artist-items">
           {homePageHeaderFeaturedCards.map(({cardMeta})=>{
-            
+            if(cardMeta.cardImage.imageFile != null){
             return(
-              <Artist to={`/${cardMeta.cardName}`}>
+              <Artist to={`/${cardMeta.cardName.toLowerCase()}`}>
                 <Image fluid={cardMeta.cardImage.imageFile.childImageSharp.fluid} alt={cardMeta.cardImage.altText}/>
                 <div className="artist-info">
                   <p>{cardMeta.cardName}</p>
                   <p>{cardMeta.cardValue} euro</p>
                 </div>
               </Artist>
-            )
+            )}
             
           })}
         </div>
