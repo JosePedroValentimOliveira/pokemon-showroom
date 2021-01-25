@@ -6,49 +6,47 @@ import Layout from "../components/layout"
 
 import SEO from "../components/seo"
 
-import {Wrapper, Card,BottomEdgeDown,BottomEdgeUp} from '../pageStyles/pageStyles';
+import {Wrapper, Card,BottomEdgeDown,BottomEdgeUp,Image} from '../pageStyles/pageStyles';
 import { COLORS } from "../constants";
 
 const Cards = () => {
 
-    const {wpcontent: {pageBy: {
+    const {wpcontent: {page: {
         cardsPageMeta: { cardsBannerImage, cardsDescription }},
         cards:{edges:cards}
     }
       } = useStaticQuery(graphql`
     query{
-        wpcontent {
-            pageBy(pageId: 11) {
-            cardsPageMeta {
-                cardsDescription
-                cardsBannerImage {
-                altText
-                sourceUrl
-                
-                
-                }
-            }
-            }
-            cards {
-            edges {
-                node {
-                cardMeta {
-                    cardName
-                    cardHealthPoints
-                    cardAttack1
-                    cardSetNumber
-                    cardValue
-                    cardImage{
-                    altText
-                    sourceUrl
-                    
-                    
-                    }
-                }
-                }
-            }
-            }
+       wpcontent {
+    page(id: "cards", idType: URI) {
+      cardsPageMeta {
+        cardsDescription
+        cardsBannerImage {
+          sourceUrl
+          altText
+          
         }
+      }
+    }
+    cards {
+      edges {
+        node {
+          cardMeta {
+            cardName
+            cardHealthPoints
+            cardAttack1
+            cardSetNumber
+            cardValue
+            cardImage {
+              sourceUrl
+              altText
+              
+            }
+          }
+        }
+      }
+    }
+  }
     }
     `)
      
@@ -59,10 +57,12 @@ const Cards = () => {
       <Wrapper cardsColor={COLORS.BLACK} descriptionColor={COLORS.WHITE}>
         <div className="banner">
             
-          <img className="w-full h-full object-cover "
-            src={cardsBannerImage.sourceUrl}
+            <img className="w-full h-full object-cover"
+            src={require(`../images/cards/${cardsBannerImage.sourceUrl.split("/")[7]}`)}
             alt={cardsBannerImage.altText}
-          />
+          />  
+       
+          {/* <Image fluid={cardsBannerImage.imageFile.childImageSharp.fluid} alt={cardsBannerImage.altText}/> */}
           <BottomEdgeDown color={COLORS.BLACK} />
         </div>
         <div className="description">
@@ -75,16 +75,16 @@ const Cards = () => {
           <div className="card-items">
               
             {cards.map(( {node:{cardMeta}}) => {
+             
                
                return(
+                 
                    <Card to={`/${cardMeta.cardName.toLowerCase()}`} key={cardMeta.cardName}>
                   
                       
                  
-                <img className="w-full h-full object-contain"
-                  src={cardMeta.cardImage.sourceUrl}
-                  alt={cardMeta.cardImage.altText}
-                />
+                
+               <img className="w-full h-full object-contain" src={require(`../images/cards/${cardMeta.cardImage.sourceUrl.split("/")[7]}`)} alt={cardMeta.cardImage.altText}/>
                 <div className="card-info">
                   <p>
                     {cardMeta.cardName} #{cardMeta.cardSetNumber}
@@ -95,7 +95,7 @@ const Cards = () => {
                
             })}
           </div>
-        </div>
+        </div> 
       </Wrapper>
     </Layout>
     )

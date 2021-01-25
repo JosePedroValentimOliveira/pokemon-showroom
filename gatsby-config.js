@@ -37,7 +37,7 @@ module.exports = {
       
       fieldName: "wpcontent",
       
-      url: "http://pokemonshowroomwp.local/graphql",
+      url: "http://pokemon-showdown-wp.local/graphql",
       
       },
       

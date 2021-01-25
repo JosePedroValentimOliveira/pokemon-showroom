@@ -4,38 +4,34 @@ import {  useStaticQuery,graphql } from "gatsby"
 import Layout from "../components/layout"
 
 import SEO from "../components/seo"
-import {Wrapper, Card,BottomEdgeUp} from '../pageStyles/pageStyles';
+import {Wrapper, Card,BottomEdgeUp,Image} from '../pageStyles/pageStyles';
 import { COLORS } from "../constants";
 const IndexPage = () => {
-  const {wpcontent:{pageBy:{homePageMeta:{homePageHeaderTitle,homePageHeaderFeaturedCards,homePageHeaderDescription,homePageHeaderBannerImage}}}} = useStaticQuery(graphql`
+  const {wpcontent:{page:{homePageMeta:{homePageHeaderTitle,homePageFeaturedCards,homePageHeaderDescription,homePageHeaderBannerImage}}}} = useStaticQuery(graphql`
   query{
     wpcontent {
-    pageBy(pageId: 9) {
+    page(id: "home-page", idType: URI) {
       homePageMeta {
         homePageHeaderTitle
-        homePageHeaderFeaturedCards {
+        homePageHeaderDescription
+        homePageHeaderBannerImage {
+          sourceUrl
+          altText
+          
+        }
+        homePageFeaturedCards {
           ... on WPGraphql_Card {
             id
             cardMeta {
               cardName
-              cardHealthPoints
-              cardAttack1
               cardSetNumber
-              cardValue
-              cardImage {
-                altText
+              cardImage{
                 sourceUrl
-               
-                slug
+                altText
+                
               }
             }
           }
-        }
-        homePageHeaderDescription
-        homePageHeaderBannerImage {
-          altText
-          sourceUrl
-          
         }
       }
     }
@@ -48,7 +44,9 @@ const IndexPage = () => {
     <SEO title="Home" />
     <Wrapper>
     <div className="banner">
-        <img className="w-full h-full object-cover " src={homePageHeaderBannerImage.sourceUrl} alt={homePageHeaderBannerImage.altText}/>
+        <img className="w-full h-full object-cover " src={require(`../images/cards/${homePageHeaderBannerImage.sourceUrl.split("/")[7]}`)} alt={homePageHeaderBannerImage.altText}/> 
+        
+        {/* <Image fluid={homePageHeaderBannerImage.imageFile.childImageSharp.fluid} alt={homePageHeaderBannerImage.altText}/> */}
         <div className="inner-div items-center gap-8 rounded-xl border-2 border-white ">
           <p className="header-title pt-6">{homePageHeaderTitle}</p>
           
@@ -59,11 +57,12 @@ const IndexPage = () => {
       <div className="cards" id="featured">
       <div className="card-items">
       
-          {homePageHeaderFeaturedCards.map(({cardMeta})=>{
- 
+          {homePageFeaturedCards.map(({cardMeta})=>{
+           
             return(
               <Card to={`/${cardMeta.cardName.toLowerCase()}`} >
-                <img className="w-full h-full object-contain" src={cardMeta.cardImage.sourceUrl} alt={cardMeta.cardImage.altText}/>
+               <img className="w-full h-full object-contain" src={require(`../images/cards/${cardMeta.cardImage.sourceUrl.split("/")[7]}`)} alt={cardMeta.cardImage.altText}/>
+              {/* <Image fluid={cardMeta.cardImage.imageFile.childImageSharp.fluid} alt={cardMeta.cardImage.altText}/> */} 
                 <div className="card-info">
                   <p>{cardMeta.cardName} #{cardMeta.cardSetNumber}</p>
                   
@@ -79,7 +78,7 @@ const IndexPage = () => {
     
         <p>{homePageHeaderDescription}</p>
         <BottomEdgeUp color={COLORS.PRIMARY}/>
-      </div>
+      </div> 
       
     </Wrapper>
   </Layout>

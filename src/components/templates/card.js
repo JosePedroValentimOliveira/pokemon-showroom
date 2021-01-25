@@ -2,7 +2,7 @@ import React from 'react'
 import {graphql} from 'gatsby';
 import Layout from '../layout';
 import SEO from '../seo';
-import {Wrapper} from './templateStyles/cardStyles';
+import {Wrapper,Image} from './templateStyles/cardStyles';
 
 const CardTemplate = ({data:{wpcontent:{card:{cardMeta,typing:{edges:typing}}}}}) => {
   
@@ -12,12 +12,13 @@ const CardTemplate = ({data:{wpcontent:{card:{cardMeta,typing:{edges:typing}}}}}
      <Wrapper>
        <div className="card-container">
         <div className="card-image">
-        <img className="w-full h-full object-contain" src={cardMeta.cardImage.sourceUrl} alt={cardMeta.cardImage.altText}/>
+        <img className="w-full h-full object-contain" src={require(`../../images/cards/${cardMeta.cardImage.sourceUrl.split("/")[7]}`)} alt={cardMeta.cardImage.altText}/> 
+        {/* <Image fluid={cardMeta.cardImage.imageFile.childImageSharp.fluid}/> */}
         </div>
         <div className="card-info">
           <h2>{cardMeta.cardName}</h2>
           <h3>€{cardMeta.cardValue}</h3>
-s
+
           <p className="info">
             <strong>Health points: </strong>{cardMeta.cardHealthPoints}
           </p>
@@ -40,7 +41,7 @@ s
           
           
         </div>
-       </div>
+       </div> 
      </Wrapper>
    </Layout>
   )

@@ -7,9 +7,7 @@ const Menu = ({menuItems}) => {
     return (
         <MenuList>
             {menuItems.map(({node:item},i)=>{
-                if(item.label == "Cards"){
-                    item.path = "/cards";
-                }
+                
                 
                 return(
                     <li key={i} >
