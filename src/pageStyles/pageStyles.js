@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     display: flex;
     position: relative;
     width: 100%;
-    height: 700px;
+    height: 920px;
 
     @media (max-width: ${MEDIA_QUERIES.MEDIUM}) {
       height: 355px;
@@ -23,7 +23,8 @@ export const Wrapper = styled.div`
       transform: translate(-50%, -50%);
       width: 60%;
       padding: 1rem;
-      background-color: ${COLORS.PRIMARY + "d0"};
+      background-color: ${COLORS.BLACK };
+      opacity:0.8;
 
       @media (max-width: ${MEDIA_QUERIES.MEDIUM}) {
         top: 120px;
@@ -48,7 +49,7 @@ export const Wrapper = styled.div`
         color: white;
         text-transform: uppercase;
         margin: auto;
-        border-bottom: solid 5px white;
+        
         margin-bottom: 1rem;
 
         @media (max-width: ${MEDIA_QUERIES.MEDIUM}) {
@@ -64,13 +65,13 @@ export const Wrapper = styled.div`
     position: relative;
     width: 100%;
     padding: 3rem 0 10rem;
-    background-color: ${({ descriptionColor = COLORS.BLACK }) =>
+    background-color: ${({ descriptionColor = COLORS.WHITE }) =>
       `${descriptionColor}`};
 
     h2 {
       font-family: ${FONT_FAMILIES.TITLE};
       font-size: 3rem;
-      color: white;
+      color: black  ;
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 3rem;
@@ -83,7 +84,7 @@ export const Wrapper = styled.div`
     p {
       width: 70%;
       font-size: 1.3rem;
-      color: ${COLORS.TERTIARY};
+      color: ${COLORS.BLACK};
       text-align: center;
       line-height: 2rem;
       margin: auto;
@@ -126,15 +127,16 @@ export const Wrapper = styled.div`
     }
   }
 
-  .artists {
+  .cards {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding: 2rem 5%;
-    background-color: ${({ artistsColor = COLORS.PRIMARY }) =>
-      `${artistsColor}`};
+    margin-top:2rem;
+    background-color: ${({ cardsColor = COLORS.PRIMARY }) =>
+      `${cardsColor}`};
 
     h2 {
       font-family: ${FONT_FAMILIES.TITLE};
@@ -149,7 +151,7 @@ export const Wrapper = styled.div`
       }
     }
 
-    .artist-items {
+    .card-items {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -160,11 +162,12 @@ export const Wrapper = styled.div`
   }
 `
 
-export const Artist = styled(Link)`
+export const Card = styled(Link)`
   display: flex;
   position: relative;
-  width: 22vw;
-  height: 22vw;
+
+  width: 18vw;
+  height: 18vw;
   margin: 2vw;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
@@ -178,17 +181,19 @@ export const Artist = styled(Link)`
   &:hover {
     transform: scale(1.05);
 
-    .artist-info {
+    .card-info {
       height: 100%;
-      background-color: ${COLORS.TERTIARY + "c0"};
+      background-color: ${COLORS.WHITE};
+      opacity:0.5;
+      border-radius:20px;
 
       p {
-        color: ${COLORS.BLACK};
+        color: ${COLORS.PRIMARY};
       }
     }
   }
 
-  .artist-info {
+  .card-info {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -198,7 +203,7 @@ export const Artist = styled(Link)`
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    background-color: ${COLORS.BLACK + "c0"};
+    background-color: ${COLORS.WHITE + "c0"};
     transition: all 0.3s ease-in-out;
 
     p {
@@ -210,7 +215,7 @@ export const Artist = styled(Link)`
     }
 
     p:nth-child(2) {
-      color: ${COLORS.SECONDARY};
+      color: ${COLORS.WHITE};
 
       margin-top: 0.3rem;
     }
@@ -221,7 +226,7 @@ export const BottomEdgeDown = styled.div`
   position: absolute;
   bottom: 0;
   width: 0;
-  border-bottom: 130px solid ${COLORS.TERTIARY};
+  border-bottom: 130px solid ${COLORS.PRIMARY};
   border-right: 100vw solid transparent;
 
   &:before {
@@ -237,7 +242,7 @@ export const BottomEdgeUp = styled.div`
   position: absolute;
   bottom: 0;
   width: 0;
-  border-bottom: 140px solid ${COLORS.TERTIARY};
+  border-bottom: 140px solid ${COLORS.PRIMARY};
   border-right: 100vw solid transparent;
 
   &:after {

@@ -1,4 +1,4 @@
-import { Link, useStaticQuery,graphql } from "gatsby"
+import { useStaticQuery,graphql } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import {HeaderWrapper} from './headerStyles/headerStyles'

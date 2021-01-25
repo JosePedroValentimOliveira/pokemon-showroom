@@ -43,7 +43,7 @@ export const MenuList = styled.ul`
     justify-content: center;
     align-items: center;
     a {
-      color: ${COLORS.WHITE};
+      color: ${COLORS.PRIMARY};
       font-size: 1.2rem;
       font-family: ${FONT_FAMILIES.BUTTON};
       text-transform: uppercase;
@@ -53,12 +53,12 @@ export const MenuList = styled.ul`
     }
 
     a:hover {
-      color: ${COLORS.TERTIARY};
+      color: ${COLORS.WHITE};
     }
   }
 
   .nav-active {
-    color: ${COLORS.TERTIARY};
+    color: ${COLORS.WHITE};
   }
 `
 

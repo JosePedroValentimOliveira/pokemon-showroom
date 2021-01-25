@@ -4,7 +4,7 @@ import {  useStaticQuery,graphql } from "gatsby"
 import Layout from "../components/layout"
 
 import SEO from "../components/seo"
-import {Wrapper,Image, Artist,BottomEdgeDown,BottomEdgeUp} from '../pageStyles/pageStyles';
+import {Wrapper, Card,BottomEdgeUp} from '../pageStyles/pageStyles';
 import { COLORS } from "../constants";
 const IndexPage = () => {
   const {wpcontent:{pageBy:{homePageMeta:{homePageHeaderTitle,homePageHeaderFeaturedCards,homePageHeaderDescription,homePageHeaderBannerImage}}}} = useStaticQuery(graphql`
@@ -53,7 +53,6 @@ const IndexPage = () => {
     }
   }
 }
-
   `)
 
   return (
@@ -61,32 +60,39 @@ const IndexPage = () => {
     <SEO title="Home" />
     <Wrapper>
     <div className="banner">
-        <Image fluid={homePageHeaderBannerImage.imageFile.childImageSharp.fluid} alt={homePageHeaderBannerImage.altText}/>
-        <div className="inner-div">
-          <p className="header-title">{homePageHeaderTitle}</p>
-          <p  className="header-description">{homePageHeaderDescription}</p>
+        <img className="w-full h-full object-cover " src={homePageHeaderBannerImage.sourceUrl} alt={homePageHeaderBannerImage.altText}/>
+        <div className="inner-div items-center gap-8 rounded-xl border-2 border-white ">
+          <p className="header-title pt-6">{homePageHeaderTitle}</p>
+          
+          <div className={"bg-gray-100 text-gray-900 w-3/12 rounded p-2 font-bold text-center"}><a href="#featured">Featured Cards</a></div>
         </div>
-        <BottomEdgeDown color={COLORS.BLACK}/>
+     
       </div>
+      <div className="cards" id="featured">
+      <div className="card-items">
+      
+          {homePageHeaderFeaturedCards.map(({cardMeta})=>{
+ 
+            return(
+              <Card to={`/${cardMeta.cardName.toLowerCase()}`} >
+                <img className="w-full h-full object-contain" src={cardMeta.cardImage.sourceUrl} alt={cardMeta.cardImage.altText}/>
+                <div className="card-info">
+                  <p>{cardMeta.cardName} #{cardMeta.cardSetNumber}</p>
+                  
+                </div>
+              </Card>
+            )
+            
+          })}
+          
+        </div>
+        </div>
       <div className="description">
+    
         <p>{homePageHeaderDescription}</p>
         <BottomEdgeUp color={COLORS.PRIMARY}/>
       </div>
-      <div className="artist-items">
-          {homePageHeaderFeaturedCards.map(({cardMeta})=>{
-            if(cardMeta.cardImage.imageFile != null){
-            return(
-              <Artist to={`/${cardMeta.cardName.toLowerCase()}`}>
-                <Image fluid={cardMeta.cardImage.imageFile.childImageSharp.fluid} alt={cardMeta.cardImage.altText}/>
-                <div className="artist-info">
-                  <p>{cardMeta.cardName}</p>
-                  <p>{cardMeta.cardValue} euro</p>
-                </div>
-              </Artist>
-            )}
-            
-          })}
-        </div>
+      
     </Wrapper>
   </Layout>
   )

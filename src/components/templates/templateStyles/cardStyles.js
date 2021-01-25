@@ -1,13 +1,13 @@
 import styled from "styled-components"
 import Img from "gatsby-image"
-import { Link } from "gatsby"
+
 import { COLORS, FONT_FAMILIES, MEDIA_QUERIES } from "../../../constants"
 
 export const Wrapper = styled.div`
   background-color: ${COLORS.BLACK};
   margin-top: 100px;
 
-  .artist-container {
+  .card-container {
     display: flex;
     margin: 3rem auto;
     width: 90%;
@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
       flex-direction: column;
     }
 
-    .artist-image {
+    .card-image {
       position: relative;
       width: 40vw;
       height: 40vw;
@@ -53,7 +53,7 @@ export const Wrapper = styled.div`
       }
     }
 
-    .artist-info {
+    .card-info {
       display: flex;
       flex-direction: column;
       width: 60vw;
@@ -67,10 +67,11 @@ export const Wrapper = styled.div`
         font-family: ${FONT_FAMILIES.TITLE};
         text-transform: uppercase;
         font-size: 4rem;
-        border-bottom: ${COLORS.WHITE} solid 6px;
+        border-bottom: ${COLORS.PRIMARY} solid 6px;
         padding-bottom: 1rem;
         margin-left: auto;
         margin-bottom: 0.5rem;
+        color:white;
 
         @media (max-width: ${MEDIA_QUERIES.MEDIUM}) {
           margin-right: auto;
@@ -81,7 +82,7 @@ export const Wrapper = styled.div`
 
       h3 {
         font-family: ${FONT_FAMILIES.TITLE};
-        color: ${COLORS.SECONDARY};
+        color: ${COLORS.WHITE};
         font-size: 1.8rem;
         text-transform: uppercase;
         margin-left: auto;
@@ -111,11 +112,12 @@ export const Wrapper = styled.div`
       .info {
         font-family: 2rem;
         text-transform: uppercase;
+        color:white;
       }
     }
   }
 
-  .artist-pictures {
+  .card-pictures {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -125,7 +127,7 @@ export const Wrapper = styled.div`
       flex-direction: column;
     }
 
-    .artist-picture {
+    .card-picture {
       width: 28.5vw;
       height: 57vw;
       margin: 0 1vw;
@@ -140,6 +142,8 @@ export const Wrapper = styled.div`
 `
 
 export const Image = styled(Img)`
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  
 `

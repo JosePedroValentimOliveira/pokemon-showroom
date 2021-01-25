@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 
 import SEO from "../components/seo"
 
-import {Wrapper,Image, Artist,BottomEdgeDown,BottomEdgeUp} from '../pageStyles/pageStyles';
+import {Wrapper, Card,BottomEdgeDown,BottomEdgeUp} from '../pageStyles/pageStyles';
 import { COLORS } from "../constants";
 
 const Cards = () => {
@@ -67,43 +67,43 @@ const Cards = () => {
     return (
        
         <Layout>
-      <SEO title="Artists" />
-      <Wrapper artistsColor={COLORS.BLACK} descriptionColor={COLORS.SECONDARY}>
+      <SEO title="Cards" />
+      <Wrapper cardsColor={COLORS.BLACK} descriptionColor={COLORS.WHITE}>
         <div className="banner">
             
-          <Image
-            fluid={cardsBannerImage.imageFile.childImageSharp.fluid}
+          <img className="w-full h-full object-cover "
+            src={cardsBannerImage.sourceUrl}
             alt={cardsBannerImage.altText}
           />
-          <BottomEdgeDown color={COLORS.SECONDARY} />
+          <BottomEdgeDown color={COLORS.BLACK} />
         </div>
         <div className="description">
           <h2>We are pokemon showroom</h2>
           <p>{cardsDescription}</p>
           <BottomEdgeUp color={COLORS.BLACK} />
         </div>
-        <div className="artists">
+        <div className="cards">
           <h2>Our Cards</h2>
-          <div className="artist-items">
+          <div className="card-items">
               
             {cards.map(( {node:{cardMeta}}) => {
-               if(cardMeta.cardImage.imageFile != null){
+               
                return(
-                   <Artist to={`/${cardMeta.cardName.toLowerCase()}`} key={cardMeta.cardName}>
+                   <Card to={`/${cardMeta.cardName.toLowerCase()}`} key={cardMeta.cardName}>
                   
                       
                  
-                <Image
-                  fluid={cardMeta.cardImage.imageFile.childImageSharp.fluid}
+                <img className="w-full h-full object-contain"
+                  src={cardMeta.cardImage.sourceUrl}
                   alt={cardMeta.cardImage.altText}
                 />
-                <div className="artist-info">
+                <div className="card-info">
                   <p>
-                    {cardMeta.cardName} {cardMeta.cardValue}
+                    {cardMeta.cardName} #{cardMeta.cardSetNumber}
                   </p>
                  
                 </div>
-              </Artist>)}
+              </Card>)
                
             })}
           </div>
