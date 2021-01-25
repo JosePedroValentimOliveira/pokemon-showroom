@@ -24,13 +24,7 @@ const Cards = () => {
                 cardsBannerImage {
                 altText
                 sourceUrl
-                imageFile {
-                    childImageSharp {
-                    fluid(quality: 100) {
-                        ...GatsbyImageSharpFluid_withWebp
-                    }
-                    }
-                }
+                
                 
                 }
             }
@@ -47,13 +41,7 @@ const Cards = () => {
                     cardImage{
                     altText
                     sourceUrl
-                    imageFile {
-                        childImageSharp {
-                        fluid(quality: 100) {
-                            ...GatsbyImageSharpFluid_withWebp
-                        }
-                        }
-                    }
+                    
                     
                     }
                 }

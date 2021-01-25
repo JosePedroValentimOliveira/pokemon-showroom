@@ -25,13 +25,7 @@ const IndexPage = () => {
               cardImage {
                 altText
                 sourceUrl
-                imageFile {
-                  childImageSharp {
-                    fluid(quality: 100) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
+               
                 slug
               }
             }
@@ -41,13 +35,7 @@ const IndexPage = () => {
         homePageHeaderBannerImage {
           altText
           sourceUrl
-          imageFile {
-            childImageSharp {
-              fluid(quality: 100) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
+          
         }
       }
     }

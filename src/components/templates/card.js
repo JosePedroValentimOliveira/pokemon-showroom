@@ -5,7 +5,7 @@ import SEO from '../seo';
 import {Wrapper} from './templateStyles/cardStyles';
 
 const CardTemplate = ({data:{wpcontent:{card:{cardMeta,typing:{edges:typing}}}}}) => {
-  console.log(cardMeta)
+  
   return (
    <Layout>
      <SEO title="card"/>
@@ -17,7 +17,7 @@ const CardTemplate = ({data:{wpcontent:{card:{cardMeta,typing:{edges:typing}}}}}
         <div className="card-info">
           <h2>{cardMeta.cardName}</h2>
           <h3>€{cardMeta.cardValue}</h3>
-
+s
           <p className="info">
             <strong>Health points: </strong>{cardMeta.cardHealthPoints}
           </p>
@@ -67,13 +67,7 @@ export const pageQuery = graphql`
       cardValue
       cardImage {
         sourceUrl
-        imageFile {
-          childImageSharp {
-            fluid(quality: 100) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
+        
         altText
       }
     }
